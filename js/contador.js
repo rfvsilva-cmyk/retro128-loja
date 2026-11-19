@@ -26,15 +26,17 @@ function iniciarContador(campanha) {
   banner.hidden = false;
 
   Observabilidade.registrarMedidor('historico_contador', () => historicoContador.length);
+    return setInterval(tick, campanha.intervaloContadorSegundos * 1000);
 
   function tick() {
     const restante = Math.max(0, fim - Date.now());
-    historicoContador.push({
+        historicoContador.push({
       instante: Date.now(),
       restante: restante,
-      jogos: JOGOS.map((jogo) => ({ ...jogo })),
-      vitrine: vitrine.cloneNode(true)
+      jogos: JOGOS.map((jogo) => jogo.id),
+      vitrineItens: vitrine.children.length
     });
+    if (historicoContador.length > 300) historicoContador.shift();
     Observabilidade.contar('contador_ticks');
     alvo.innerHTML = formatarTempo(restante);
   }
