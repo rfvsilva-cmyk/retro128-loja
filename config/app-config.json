@@ -1,6 +1,7 @@
 {
   "nomeLoja": "Retrô 128",
-  "versao": "2.0.0",
+  "versao": "2.0.1",
+  "pastaCapas": "img/capas/",
   "ambiente": "producao",
   "moeda": "BRL",
   "catalogoUrl": "data/catalogo.json",
